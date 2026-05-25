@@ -1,0 +1,38 @@
+Positioning background images
+
+1. Open the file bistro.html.
+
+2. I¡¦m thinking that since the main elements of the menu are centered, it would be nice if the background patterns stayed centered, too. Add this declaration to both the body and #header rules, then save and look at it in the browser. You may not notice the difference until you resize the browser wide and narrow again. Now the pattern is anchored in the center and reveals more or less on both edges, not just the right edge as before.
+
+	background-position: center top;
+
+3. For kicks, alter the background-position values so that the purple dots are along the bottom edge of the header div (center bottom). (Doesn¡¦t look so good; I¡¦m putting mine back.) Then try moving the bullseye.png down 200 pixels (center 200px). Notice that the pattern still fills the entire screen ¡X we moved the origin image down, but the background is still set to tile in all directions. 
+
+4. That looks good, but let¡¦s get rid of the background on the body for now. I want to show you a little trick. During the design process, I prefer to hide styles in comments instead of deleting them entirely. That way I don¡¦t need to remember them or type them in again; I only have to remove the comment indicators and they¡¦re back. When the design is done and it¡¦s time to publish, I strip unused styles out to keep the file size down. Here is how to hide declarations in comments:
+
+	body {
+		font-family: Georgia, serif;
+		font-size: 100%;
+		line-height: 175%;
+		margin: 0 15%;
+		background-color: #d2dc9d;
+		/* background-image: url(images/bullseye.png);
+		background-position: center 200px; */
+	}
+	
+5. Now, add the blackgoose.png images (also a semitransparent PNG) to the background of the page. Set it to not repeat, and center it in the page.
+
+	background-image: url(images/blackgoose.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+  
+  Take a look in the browser window and watch the background scroll up with the content when you scroll the page.
+
+6. I want you to get a feel for the various position keywords and numeric values. Try each of these out and look at them in the browser. Be sure to scroll the page and watch what happens. Note that when you provide a percentage or keyword to the vertical position, it is based on the height of the entire document, not just the browser window. You can try your own variations as well.
+
+	background-position: right top;
+	background-position: right bottom;
+	background-position: left 50%;
+	background-position: center 100px;
+	
+7. Leave the image positioned at center 100px so you are ready to go for the next lab.

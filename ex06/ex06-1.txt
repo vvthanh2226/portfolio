@@ -1,0 +1,19 @@
+Adding color to a document
+
+1. Open the file bistro.html. You will find that there is already an embedded style sheet that provides basic text formatting, including a preview of the margin and padding properties that we・ll be getting to in the next chapter. With the text all set, you・ll just need to work on the colors. Feel free to save the document at any step along the way and view your progress in a browser.
+
+2. Make the h1 heading purple (R:153, G:51, B:153, or #993399) by adding a new declaration to the existing h1 rule. Note that because this value has all double digits, you can (and should) use the condensed version (#939) and save a few bytes in the style sheet.
+
+3. Make the h2 headings light orange-brown (R:204, G:102, B:0, or #cc6600).
+
+4. Make the background of the entire page a light green (R:210, G:220, B:157, or #d2dc9d). Now might be a nice time to save, have a look in a browser, and troubleshoot if the background and headings do not appear in color.
+
+5. Make the background of the ：header； div white with 50% transparency (R:255, G:255, B:255, .5) so a hint of the background color shows through.
+
+6. I・ve already added a rule that turns underlines off under links (textdecoration: none), so we・ll be relying on color to make the links pop. Write a rule that makes links the same purple as the h1 (#993399).
+
+7. Make visited links a muted purple (#937393).
+
+8. When the mouse is placed over links, make the text a brighter purple (#c700f2) and add a white background color (#fff). This will look a little like the links are lighting up when the mouse is pointing at it. Use these same style rules for when the links are in focus.
+
+9. As the mouse is being clicked (or tapped on a touch device), add a white background color and make the text turn a vibrant purple (#ff00ff). Make sure that all of your link pseudo-classes are in the correct order.

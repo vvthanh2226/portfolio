@@ -1,0 +1,23 @@
+Making an external style sheet
+
+0. It is OK to use an embedded style sheet while designing a page, but it is probably best moved to an external style sheet once the design is finished so it can be reused by multiple documents in the site. We’ll do just that for the bistro menu style sheet.
+
+1. Open the latest version of bistro.html. Select and cut all of the rules within the style element, but leave the <style>...</style> tags because we’ll be using them in a moment.
+
+2. Create a new plain ASCII text document and paste all of the style rules. Make sure that no markup got in there by accident.
+
+3. Save this document as "menustyles.css" in the same directory as the bistro.html document.
+
+4. Now, back in bistro.html, add an @import rule to attach the external style sheet:
+	
+  <style>
+		@import url(menustyles.css);
+	</style>
+  
+  Save the file and reload it in the browser. It should look exactly the same as it did when the style sheet was embedded. If not, go back and make sure that everything matches the examples.
+
+5. Delete the whole style element, and this time we’ll add the style sheet with a link element in the head of the document.
+	
+  <link rel="stylesheet" href="menustyles.css" >  
+
+  Again, test your work by saving the document and viewing it in the browser.
