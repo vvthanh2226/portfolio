@@ -1,0 +1,48 @@
+Adding margin space around elements
+
+0. Open jenware.html in your text editor if it isn¡¦t open already, and we¡¦ll adjust the margins. We¡¦ll start by adjusting the margins on the whole document, and then make tweaks to each section from top to bottom.
+
+1. It is common practice to set the margin for the body element to zero, thus clearing out the browser¡¦s default margin setting and creating a starting point for setting our own margins on elements throughout the page.
+
+	body {
+		¡K
+		margin: 0;
+	}
+  
+  Save the file and take a look in the browser. I like the way the purple navigation bar stretches from edge to edge of the browser window, but I think we need to tweak our other content areas.
+
+2. Start with the #intro div, and add a 2-em margin on the top and 1em below. I also want to close up the space between the logo and the tagline, so set the bottom margin on the h1 to zero and the top margin on the h2 to ¡V10px to move the tagline up nice and close to the logo. Finally, put a 1-em margin all around the introductory paragraph (p).
+
+	#intro {
+		¡K
+		margin: 2em 0 1em;
+	}
+	#intro h1 {
+		margin-bottom: 0;
+	}
+	#intro h2 {
+		¡K
+		margin-top: -10px;
+	}
+	#intro p {
+		¡K
+		margin: 1em;
+	}
+	
+3. Give the #products section a 1-em margin all around.
+
+	#products {
+		¡K
+		margin: 1em;
+	}
+	
+4. Now add a 2.5em space above the products subsection headings (h3). By this point, I bet you could write this one without my help, but for the sake of thoroughness, here is the new declaration added to h3s in the ¡§products¡¨ section. You can try different amounts of space and see what you like best.
+
+	#products h3 {
+		¡K
+		margin-top: 2.5em;
+	}
+	
+5. Finally, we¡¦ll set apart the Testimonials box by adding 1em of space above and 10% on the left and right edges. This time, see if you can figure it out on your own. 
+
+6. Save the document and take a look in your browser. This isn¡¦t the most beautiful design, particularly if your browser window is set wide. However, if you resize your browser window very narrow, you¡¦ll find that it wouldn¡¦t be too bad as the small-screen version in a responsive web design. 

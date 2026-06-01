@@ -1,0 +1,239 @@
+Tutorial: Margins, Backgrounds, and Borders
+
+1. In your favorite text editor, open main.css.
+   This style sheet is already linked to the index.html file, so the styles you add here will apply to that web page.
+
+2. At the bottom of the main.css file, click directly after the CSS comment /* end reset browser styles */ and add a tag selector style:
+
+  html {
+    background-color: rgb(253,248,171);
+  }
+  
+  This style adds a light yellow background color to the page. If you want to color the background of a web page, you can add the background-color property to either the <html> tag or the <body> tag. 
+
+3. Add another style to the style sheet:
+
+  body {
+    background-color: rgb(255,255,255);
+    border: 3px solid rgb(75,75,75);
+  }
+
+  This style adds a white background color to the <body> tag and a 3-pixel dark gray border. Because the <body> tag sits inside the <html> tag, a web browser considers it to be “on top” of the <html> tag, so the white background will cover the yellow color you added in the previous step. 
+  
+4. Edit the body style you just created by adding five new properties:
+
+  body {
+    background-color: rgb(255,255,255);
+    border: 3px solid rgb(75,75,75);
+    max-width: 760px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+  }
+
+  The max-width property constrains the body so that it never gets more than 760 pixels wide: If a visitor’s browser window is wider than 760 pixels, then he’ll see the background color from the html style and a 760-pixel box with the white background of the <body> tag. However, the browser window can get smaller than that, and the body will then shrink to fit the window, which makes viewing the page on a small tablet or phone easier.
+
+  The margin-top property adds 20 pixels of space from the browser window’s top edge—nudging the <body> tag down just a bit—while the left and right margin settings center the body in the middle of the browser window. “Auto” is just another way of telling a browser, “You figure it out,” and since that auto value is applied to both the left and right margins, a browser simply provides equal space on the left and right side.
+
+  Finally, to keep the content inside the <body> tag from touching the border line, 15 pixels of space are added to the inside of the body by using the padding property—in other words, the image and text are indented 15 pixels from all four edges.
+  
+5. Edit the body style you just created by adding one last property after the border but before the width:
+
+  body {
+    background-color: rgb(255,255,255);
+    border: 3px solid rgb(75,75,75);
+    box-shadow: 0 0 15px 5px rgba(44,82,100,.75);
+    max-width: 760px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+  }
+
+  This style adds a glow to the box by creating a 15-pixel shadow placed directly behind the box (the 0 0 part at the beginning indicates that the shadow isn’t offset to the left/right or top/bottom; it’s simply in the background). The 5px value is the spread value, and it pushes the shadow out 5 pixels around all four edges. Finally, the rgba value sets the color to a dark blue that’s only 75 percent solid (that is, you can see through to the background yellow).
+
+6. Save the file and preview the page in a web browser.
+
+  You should see a white box with an image, a bunch of text, and a gray outline with a bluish glow floating in a sea of yellow
+
+
+Adjusting the Space Around Tags
+
+1. Return to your text editor and the main.css file. Click at the end of the closing brace of the <body> tag selector, press Enter (Return) to create a new line, and then add the following style:
+
+  h1 {
+    font-size: 2.75em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 1px;
+    color: rgb(133,161,16);
+    text-transform: uppercase;
+  }
+
+  This style uses many of the text-formatting properties—the top headline is 2.75 ems tall (44 pixels in most browsers) and all uppercase, uses the Georgia font, and has a green color, with a little space between each letter. The text-align property makes sure the text is centered in the middle of the box. The real fun is adding a background color to really highlight the headline.
+  
+2. Add one new property to the h1 tag style so that it looks like this:
+  h1 {
+    font-size: 2.75em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 1px;
+    color: rgb(133,161,16);
+    text-transform: uppercase;
+    background-color: rgb(226,235,180);
+  }
+
+  If you preview the page now, you’ll see that the headline has a light green background. When applied to a block-level element like a headline, the background fills the entire horizontal space available (in other words, the color doesn’t just sit behind the text “The Amazing World of CSS,” but extends all the way to the right edge of the box). The headline text is a little cramped—the “T” that begins the headline touches the edge of the background. With a little padding, you can fix this.
+
+3. Add another property to the h1 tag style so that it looks like this:
+
+  h1 {
+    font-size: 2.75em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 1px;
+    color: rgb(133,161,16);
+    text-transform: uppercase;
+    background-color: rgb(226,235,180);
+    padding: 5px 15px 2px 15px;
+  }
+  
+  The padding shorthand property provides a concise way to add padding around all four sides of the content—in this case, 5 pixels of space are added above the text, 15 pixels to the right, 2 pixels to the bottom, and 15 pixels to the left.
+
+  There’s one other problem with the headline: Because of the padding added to the <body> tag, the headline (including its background color) is indented 15 pixels from the left and right edges of the gray border surrounding the body. The headline would look better if its background color touched the gray border. No problem; negative margins to the rescue. 
+
+4. Add one last property to the h1 tag style so that it looks like this:
+
+  h1 {
+    font-size: 2.75em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 1px;
+    color: rgb(133,161,16);
+    text-transform: uppercase;
+    background-color: rgb(226,235,180);
+    padding: 5px 15px 2px 15px;
+    margin: 0 -15px 20px -15px;
+  }
+
+  Here, the margin shorthand sets the top margin to 0, the right margin to –15 pixels, the bottom margin to 20 pixels, and the left margin to –15 pixels. The bottom margin just adds a bit of space between the headline and the paragraph that follows. The next trick is the use of negative values for the left and right margins. You can assign a negative margin to any element. This property pulls the element out toward the direction of the margin—in this case, the headline extends 15 pixels to the left and 15 pixels to the right, actually expanding the headline and pulling it out over the <body> tag’s padding.
+  
+5. Now, you’ll add some formatting of the <h2> tags. Add the following style after the h1 tag style:
+
+  h2 {
+    font-size: 1.5em;
+    font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
+    color: rgb(249,107,24);
+    border-top: 2px dotted rgb(141,165,22);
+    border-bottom: 2px dotted rgb(141,165,22);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 15px 0 5px 0;
+  }
+
+  This style adds some basic text formatting and a dotted border above and below the headline. To add a bit of space between the headline text and the lines, it puts a small bit of padding at the top and bottom. Finally, the margin property adds 15 pixels above the headline and 5 pixels below it.
+  
+6. Save the file and preview the page in a web browser.
+
+
+Building a Sidebar
+
+  Sidebars are common elements in most types of print publications like magazines, books, and newspapers. They compartmentalize and highlight small chunks of information like a resource list, contact information, or a related anecdote. But to be effective, sidebars shouldn’t interrupt the flow of the main story. They should, like the name says, sit unobtrusively off to one side, which you can easily make happen with CSS.
+
+1. Return to your text editor and open the index.html file.
+  First, you must isolate the region of the page that makes up the sidebar. The <div> tag is the perfect tool. You can enclose any amount of HTML into its own self-contained chunk by wrapping it in a <div> tag.
+
+2. Scroll down the page into the HTML and click before the first <h2> tag (the one with the “NOTE” headline). Then type <div class="sidebar">, and press Enter (Return).
+  This HTML marks the beginning of the sidebar and applies a class to it. You’ll create the .sidebar class style soon, but first you need to indicate the end of the sidebar by closing the <div>.
+
+3. Click after the closing </p> tag that immediately follows the <h2> tag (this is the </p> that appears just before <h2>Who Knew CSS Had Such Power?</h2>). Press Enter, and then type </div>.
+  You’ve just wrapped a headline and paragraph inside a <div> tag. Next, you’ll create a style for it.
+
+4. Return to the main.css file. Add the following style below the h2 style you created earlier:
+
+  .sidebar {
+    width: 30%;
+    float: right;
+    margin: 10px;
+  }
+
+  This style sets the width of the content area (where the text appears) to 30 percent. In this case, the sidebar’s width is 30 percent of the width of the container. The container is the <body> tag and its width will be up to 760 pixels. The float property moves the sidebar to the right side of the box, and the margin property adds 10 pixels of space around the sidebar.
+
+  If you preview the page in a browser, you’ll see that the basic shape and placement of the sidebar are set, but there’s one problem: The borders from the <h2> tags appear underneath the box. Even though the floated sidebar moves the text of the headlines out of the way, floats don’t displace borders or backgrounds. Those just appear right under the floated sidebar. One way to fix this problem is to simply add a background color to the sidebar, so you can’t see the h2 borders.
+
+5. Add two other properties to the .sidebar style so it looks like this:
+
+  .sidebar {
+    width: 30%;
+    float: right;
+    margin: 10px;
+    background-color: rgb(250,235,199);
+    padding: 10px 20px;
+  }
+
+  These properties add a light orangish color to the sidebar and indents the text from the sidebar’s edges so it won’t touch the borders you’re about to add.
+
+6. Add two more properties to the .sidebar style so it looks like this:
+
+  .sidebar {
+    width: 30%;
+    float: right;
+    margin: 10px;
+    background-color: rgb(250,235,199);
+    padding: 10px 20px;
+    border: 1px dotted rgb(252,101,18);
+    border-top: 20px solid rgb(252,101,18);
+  }
+  
+  If you want most of the borders around an element to be the same, you can first define a border for all four edges—in this case a 1-pixel, dotted, orange line around the entire sidebar—and then supply new border properties for the specific edges you want changed—in this example, the top border will be 20 pixels tall and solid. This technique lets you use just two lines of CSS code instead of four (border-top, border-bottom, border-left, and border-right).
+
+7. Finally, add two more properties to the .sidebar style so it looks like this:
+
+  .sidebar {
+    width: 30%;
+    float: right;
+    margin: 10px;
+    background-color: rgb(250,235,199);
+    padding: 10px 20px;
+    border: 1px dotted rgb(252,101,18);
+    border-top: 20px solid rgb(252,101,18);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.5);
+  }
+
+  The border-radius property lets you create rounded corners. In this case, the 10-pixel setting provides a prominent-looking curve. The box-shadow property here adds a drop shadow below and to the right of the box, making it look as though it’s floating above the page. 
+  
+  The headline inside the sidebar doesn’t look quite right. It uses the same properties as the other <h2> tags. The border is distracting and the top margin pushes the headline down too much from the top of the sidebar. Fortunately, you can use a descendant selector to override those properties.
+
+8. After the .sidebar style, in the main.css style sheet, add a descendant selector:
+  .sidebar h2 {
+    border: none;
+    margin-top: 0;
+    padding: 0;
+  }
+  
+  Because of the .sidebar, this style is more powerful—that is, it has greater—than the basic h2 style. It erases the border from the original h2 tag style, along with the top margin and all the padding. However, since this style doesn’t have a font size, color, or font family, those properties from the h2 style still apply—it’s the cascade in action!
+
+  The page is looking good, but the borders on the <h2> tags still run up to and behind the sidebar. That just doesn’t look good, but you can fix it easily.
+
+9. Locate the <h2> style and add the overflow property, like so:
+  h2 {
+    font-size: 1.5em;
+    font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
+    color: rgb(249,107,24);
+    border-top: 2px dotted rgb(141,165,22);
+    border-bottom: 2px dotted rgb(141,165,22);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 15px 0 5px 0;
+    overflow: hidden;
+  }
+
+  Setting the overflow property to hidden hides the borders that pass beyond the headline text and under the floating element.
+
+10. Save the file and preview the web page in a browser.

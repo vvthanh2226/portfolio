@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Jenware | Personalized Gifts</title>
+<style type="text/css">
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 100%;
+  background-color: #fcfcfc;
+  margin: 0;
+  padding: 0;
+}
+
+/* link styles */
+a:link { color: #C00; text-decoration: underline; }
+a:visited { color: #921A66; }
+a:focus { color: #921A66; }
+a:hover { color: #921A66; }
+a:active { color: #F00; }
+
+/* Khối giới thiệu màu vàng nhạt chạy ngang ở trên cùng */
+#intro { 
+  text-align: center; 
+  background-color: #fdf9bd;
+  padding: 10px 20px;
+}
+#intro .brand-header h1 {
+  margin: 10px 0;
+}
+#intro h2 {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: #f26521;
+  display: none; /* Ẩn chữ phụ nếu trong ảnh mẫu không dùng đến */
+}
+#intro p {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 0.95em;
+  margin: 5px 0;
+}
+
+/* Menu dọc màu tím sẫm nằm bên trái */
+#nav { 
+  background-color: #751c54; 
+  width: 120px;
+  float: left;
+  padding: 15px 0;
+  min-height: 450px; /* Tăng chiều cao để đẩy menu dài xuống tương tự như ảnh */
+}
+#nav ul { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+} 
+#nav ul li { 
+  text-transform: uppercase; 
+  display: block; 
+  margin-bottom: 10px;
+  padding-left: 15px;
+}
+#nav ul a:link, #nav ul a:visited { color: #fff; text-decoration: none; font-weight: bold; }
+#nav ul a:focus, #nav ul a:hover { color: #fc6; }
+#nav ul a:active { color: #F00; }
+
+/* Vùng chứa toàn bộ nội dung chính dạt sang bên phải menu */
+#content {
+  margin-left: 140px;
+  padding: 20px;
+}
+
+/* Khối danh sách sản phẩm có đường viền màu cam bao quanh */
+#products {
+  background-color: #FFF;
+  line-height: 1.6em;
+  border: 2px solid #f26521; /* Viền cam chạy bao quanh khối sản phẩm như ảnh mẫu */
+  padding: 20px;
+  margin-bottom: 20px;
+}
+#products h2 {
+  font-size: 1.2em;
+  color: #ac267b; /* Chữ NEW PRODUCTS màu tím hồng chuẩn xác */
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 0;
+  letter-spacing: 1px;
+}
+#products h3 {
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #F26521;
+  border-bottom: 1px solid #f26521; /* Đường gạch cam dưới tiêu đề Barware & Babyware */
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+#products img {
+  float: left;       /* Giúp ảnh đẩy sang bên trái */
+  margin-right: 20px; /* Tạo khoảng trống giữa ảnh và chữ */
+  margin-bottom: 10px;
+}
+#products p {
+  margin-bottom: 15px;
+}
+
+/* Khối nhận xét khách hàng màu vàng cam đậm phía dưới */
+#testimonials {
+  background-color: #ffbc53;
+  font-size: .875em;
+  line-height: 1.5;
+  color: #663333;
+  padding: 20px;
+  border-radius: 5px;
+}
+#testimonials h2 {
+  font-size: 1.1em;
+  text-transform: uppercase;
+  color: #F26521;
+  letter-spacing: 2px;
+  margin-top: 0;
+}
+
+/* Kỹ thuật xóa tràn (Clearfix) để ảnh không đè lên bố cục bên dưới */
+.clear {
+  clear: both;
+}
+p#copyright {
+  color: #663333; 
+  font-size: .8em;
+  text-align: center;
+  margin-top: 20px;
+  clear: both;
+}
+</style>
+</head>
+
+<body>
+<div id="intro">
+  <p>Special occasions call for special gifts. The Jenware line of housewares and clothing can be personalized for the ones you love. </p>
+</div>
+
+<div id="nav">
+  <ul>
+    <li><a href="">HOUSE</a></li>
+    <li><a href="">BABY</a></li>
+    <li><a href="">MORE</a></li>
+    <li><a href="">ABOUT</a></li>
+  </ul>
+</div>
+
+<div id="content">
+  
+  <div id="products">
+    <h2>New Products</h2>
+    
+    <h3>Barware</h3>
+    <img src="images/glasses.jpg" alt="photo of glasses decorated with the letter R">
+    <p><em>The perfect wedding gift.</em> Our highest quality glassware is sandblasted by hand with the character of your choice. Choose from 30 characters and 24 typefaces. Custom designs are also available for an additional design charge. Allow 2 to 4 weeks for delivery. </p>
+    <p><a href="#">More about custom barware...</a> </p>
+    <div class="clear"></div> <h3>Babyware</h3>
+    <img src="images/shirts.jpg" alt="photos of shirts personalized with initial letters">
+    <p><em>Tired of sickly-sweet?</em> These onesies with oversized letters in bold, bright patterns are a welcome change from the usual pastel fare. Monogrammed pants and baby shoes are also available. Tell us the initial and mix and match from 6 fun fabric patterns and 8 edging colors. Allow 2 to 4 weeks for delivery. Sizes: 3mos, 6mos, and 12mos.</p>
+    <p><a href="#">More about our onesies...</a> </p>
+    <div class="clear"></div> </div>
+
+  <div id="testimonials">
+    <h2>Testimonials</h2>
+    <p>&quot;The Jenware onesies were the hit of the baby shower. The custom letter &quot;a&quot; and handmade quality made this gift really stand out among the cookie-cutter clothes from the department store.&quot;</p>
+    <p>&quot;Thanks for the cool Jenware barware. I couldn't wait until I found &quot;Mr. Right,&quot; so I just bought a set for myself! My friends always want to know where I got them so I send them to your site.&quot; </p>
+  </div>
+  
+  <p id="copyright">All content copyright &copy; Jennifer Robbins and Jenware, Inc. </p>
+</div>
+</body>
+</html>
