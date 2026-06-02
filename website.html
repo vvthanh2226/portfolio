@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #03020d;
+    --text: #f0ede8;
+    --muted: #8a8690;
+    --accent1: #c8f542;
+    --accent2: #ff6b35;
+    --accent3: #a78bfa;
+    --card: rgba(15,12,30,0.75);
+    --border: rgba(255,255,255,0.07);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+ 
+  /* ===== UNIVERSE CANVAS ===== */
+  #universe { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+ 
+  /* ===== CONTENT LAYER ===== */
+  .page { position: relative; z-index: 1; }
+ 
+  /* NAV */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(3,2,13,0.6); backdrop-filter: blur(16px); z-index: 100; }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--accent1); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { background: var(--accent1); color: #03020d; padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+ 
+  /* HERO */
+  .hero { padding: 5rem 2.5rem 4rem; position: relative; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25); color: var(--accent3); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 1.75rem; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--muted); }
+  .hero h1 .highlight { color: var(--accent1); }
+  .hero-sub { max-width: 480px; color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent1); color: #03020d; padding: 0.75rem 1.75rem; border-radius: 100px; font-weight: 500; text-decoration: none; font-size: 14px; transition: opacity 0.2s; display: inline-block; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost { color: var(--text); text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; opacity: 0.7; transition: opacity 0.2s; }
+  .btn-ghost:hover { opacity: 1; }
+ 
+  /* MARQUEE */
+  .marquee-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; overflow: hidden; background: rgba(3,2,13,0.4); }
+  .marquee-track { display: flex; gap: 2.5rem; width: max-content; animation: marquee 18s linear infinite; }
+  .marquee-item { font-family: 'Syne', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; display: flex; align-items: center; gap: 1rem; }
+  .marquee-item span { color: var(--accent2); font-size: 18px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+ 
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin: 3rem 2.5rem; border-radius: 16px; overflow: hidden; }
+  .stat { background: var(--card); backdrop-filter: blur(10px); padding: 2rem 1.5rem; text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -0.04em; color: var(--accent1); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.4rem; }
+ 
+  /* WORK */
+  .section { padding: 3rem 2.5rem; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+  .section-link { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
+  .section-link:hover { color: var(--accent1); }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .project-card { background: var(--card); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
+  .project-card:hover { border-color: rgba(199,245,66,0.3); transform: translateY(-2px); }
+  .project-card.large { grid-column: span 2; }
+  .project-thumb { height: 180px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -0.05em; position: relative; overflow: hidden; }
+  .project-card.large .project-thumb { height: 220px; }
+  .thumb-a { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: var(--accent3); }
+  .thumb-b { background: linear-gradient(135deg, #1a0f0a 0%, #2a1505 100%); color: var(--accent2); }
+  .thumb-c { background: linear-gradient(135deg, #0d1a0d 0%, #0a2010 100%); color: var(--accent1); }
+  .thumb-dot { position: absolute; width: 80px; height: 80px; border-radius: 50%; opacity: 0.15; }
+  .thumb-dot1 { background: var(--accent3); top: 10%; right: 15%; }
+  .thumb-dot2 { background: var(--accent2); bottom: 10%; left: 10%; }
+  .project-info { padding: 1rem 1.25rem 1.25rem; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 0.6rem; }
+  .tag { font-size: 11px; padding: 3px 8px; border-radius: 100px; background: rgba(255,255,255,0.06); color: var(--muted); letter-spacing: 0.04em; }
+  .project-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+ 
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; }
+  .skill-pill { background: var(--card); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; transition: border-color 0.2s; }
+  .skill-pill:hover { border-color: rgba(199,245,66,0.3); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .skill-name { font-size: 12px; font-weight: 500; }
+  .skill-level { font-size: 11px; color: var(--muted); margin-top: 2px; }
+ 
+  /* CONTACT */
+  .contact-block { background: var(--card); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 20px; padding: 3rem 2rem; text-align: center; margin: 0 2.5rem 3rem; position: relative; overflow: hidden; }
+  .contact-block h2 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+  .contact-block p { color: var(--muted); max-width: 360px; margin: 0 auto 2rem; font-size: 15px; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 100px; padding: 0.6rem 1.2rem; font-size: 13px; color: var(--text); text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+  .contact-link:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+ 
+  /* FOOTER */
+  footer { padding: 1.5rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: rgba(3,2,13,0.5); }
+  footer p { font-size: 12px; color: var(--muted); }
+ 
+  /* CONTROLS */
+  .controls { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .ctrl-btn { background: rgba(15,12,30,0.85); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.3); color: var(--accent3); font-size: 18px; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; user-select: none; }
+  .ctrl-btn:hover { background: rgba(167,139,250,0.15); border-color: rgba(167,139,250,0.6); }
+  .ctrl-label { font-size: 11px; color: var(--muted); text-align: right; }
+</style>
+</head>
+<body>
+ 
+<canvas id="universe"></canvas>
+ 
+<div class="page">
+  <nav>
+    <div class="nav-logo">nguyen.dev</div>
+    <ul class="nav-links">
+      <li><a href="#">Về tôi</a></li>
+      <li><a href="#">Dự án</a></li>
+      <li><a href="#">Kỹ năng</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Liên hệ →</a>
+  </nav>
+ 
+  <section class="hero">
+    <div class="hero-tag">Sẵn sàng hợp tác</div>
+    <h1>
+      Tôi thiết kế<br>
+      <em>trải nghiệm</em><br>
+      <span class="highlight">số</span> đáng nhớ
+    </h1>
+    <p class="hero-sub">UI/UX Designer & Frontend Developer — biến ý tưởng phức tạp thành giao diện đẹp, trực quan và hiệu quả.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Xem dự án của tôi</a>
+      <a href="#" class="btn-ghost">Tải CV ↓</a>
+    </div>
+  </section>
+ 
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item">UI Design <span>✦</span></div>
+      <div class="marquee-item">Frontend Dev <span>✦</span></div>
+      <div class="marquee-item">Figma <span>✦</span></div>
+      <div class="marquee-item">React <span>✦</span></div>
+      <div class="marquee-item">Branding <span>✦</span></div>
+      <div class="marquee-item">Motion Design <span>✦</span></div>
+      <div class="marquee-item">UX Research <span>✦</span></div>
+      <div class="marquee-item">UI Design <span>✦</span></div>
+      <div class="marquee-item">Frontend Dev <span>✦</span></div>
+      <div class="marquee-item">Figma <span>✦</span></div>
+      <div class="marquee-item">React <span>✦</span></div>
+      <div class="marquee-item">Branding <span>✦</span></div>
+      <div class="marquee-item">Motion Design <span>✦</span></div>
+      <div class="marquee-item">UX Research <span>✦</span></div>
+    </div>
+  </div>
+ 
+  <div class="stats">
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Năm kinh nghiệm</div></div>
+    <div class="stat"><div class="stat-num">28</div><div class="stat-label">Dự án hoàn thành</div></div>
+    <div class="stat"><div class="stat-num">15</div><div class="stat-label">Khách hàng hài lòng</div></div>
+  </div>
+ 
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title">Dự án nổi bật</div>
+      <a href="#" class="section-link">Xem tất cả →</a>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card large">
+        <div class="project-thumb thumb-c">
+          <div class="thumb-dot thumb-dot1"></div>
+          <div class="thumb-dot thumb-dot2"></div>
+          FLORA
+        </div>
+        <div class="project-info">
+          <div class="project-tags"><span class="tag">UI/UX</span><span class="tag">Mobile App</span><span class="tag">React Native</span></div>
+          <div class="project-name">Flora — Ứng dụng chăm sóc cây</div>
+          <div class="project-desc">Thiết kế toàn bộ hệ thống giao diện cho ứng dụng nhận diện và chăm sóc cây trồng, phục vụ 5.000+ người dùng.</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb thumb-a"><div class="thumb-dot thumb-dot1"></div>KAI</div>
+        <div class="project-info">
+          <div class="project-tags"><span class="tag">Dashboard</span><span class="tag">SaaS</span></div>
+          <div class="project-name">Kai Dashboard</div>
+          <div class="project-desc">Bảng điều khiển phân tích dữ liệu thời gian thực cho doanh nghiệp vừa và nhỏ.</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb thumb-b"><div class="thumb-dot thumb-dot2"></div>MOVA</div>
+        <div class="project-info">
+          <div class="project-tags"><span class="tag">Branding</span><span class="tag">Web</span></div>
+          <div class="project-name">Mova — Landing Page</div>
+          <div class="project-desc">Thiết kế landing page và bộ nhận diện thương hiệu cho startup fintech.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="section" style="padding-top:0;">
+    <div class="section-header"><div class="section-title">Kỹ năng</div></div>
+    <div class="skills-grid">
+      <div class="skill-pill"><div class="skill-icon">🎨</div><div class="skill-name">Figma</div><div class="skill-level">Thành thạo</div></div>
+      <div class="skill-pill"><div class="skill-icon">⚛️</div><div class="skill-name">React</div><div class="skill-level">Thành thạo</div></div>
+      <div class="skill-pill"><div class="skill-icon">🟦</div><div class="skill-name">TypeScript</div><div class="skill-level">Tốt</div></div>
+      <div class="skill-pill"><div class="skill-icon">🎞️</div><div class="skill-name">After Effects</div><div class="skill-level">Cơ bản</div></div>
+      <div class="skill-pill"><div class="skill-icon">💅</div><div class="skill-name">Tailwind</div><div class="skill-level">Thành thạo</div></div>
+      <div class="skill-pill"><div class="skill-icon">🔍</div><div class="skill-name">UX Research</div><div class="skill-level">Tốt</div></div>
+    </div>
+  </section>
+ 
+  <div class="contact-block">
+    <h2>Hãy cùng tạo ra<br>điều gì đó <span style="color:var(--accent1)">tuyệt vời</span></h2>
+    <p>Tôi luôn mở cho các cơ hội mới, dự án thú vị hoặc chỉ đơn giản là một cuộc trò chuyện tốt.</p>
+    <div class="contact-links">
+      <a href="#" class="contact-link">✉️ Email tôi</a>
+      <a href="#" class="contact-link">💼 LinkedIn</a>
+      <a href="#" class="contact-link">🐙 GitHub</a>
+      <a href="#" class="contact-link">🎨 Dribbble</a>
+    </div>
+  </div>
+ 
+  <footer>
+    <p>© 2026 Nguyen Dev. Thiết kế với ♥ tại Việt Nam</p>
+    <p>Cập nhật tháng 6, 2026</p>
+  </footer>
+</div>
+ 
+<!-- Controls -->
+<div class="controls">
+  <div class="ctrl-label">Xoay vũ trụ</div>
+  <div style="display:flex;gap:8px;">
+    <button class="ctrl-btn" id="btn-left" title="Xoay trái">◀</button>
+    <button class="ctrl-btn" id="btn-right" title="Xoay phải">▶</button>
+  </div>
+</div>
+ 
+<script>
+const canvas = document.getElementById('universe');
+const ctx = canvas.getContext('2d');
+ 
+let W, H, cx, cy;
+let galaxyAngle = 0;
+let rotationSpeed = 0;
+let targetSpeed = 0;
+const BASE_DRIFT = 0.0003;
+ 
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  cx = W / 2; cy = H / 2;
+  initStars();
+  initNebula();
+}
+ 
+// Stars
+const STAR_COUNT = 320;
+const stars = [];
+function initStars() {
+  stars.length = 0;
+  for (let i = 0; i < STAR_COUNT; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.4 + 0.2,
+      alpha: Math.random() * 0.7 + 0.3,
+      twinkleSpeed: Math.random() * 0.02 + 0.005,
+      twinkleOffset: Math.random() * Math.PI * 2,
+      color: Math.random() < 0.15 ? '#c8f8ff' : Math.random() < 0.1 ? '#ffe8c0' : '#ffffff'
+    });
+  }
+}
+ 
+// Galaxy arms
+const ARM_COUNT = 3;
+const GALAXY_PARTICLES = 900;
+const galaxy = [];
+function initGalaxy() {
+  galaxy.length = 0;
+  for (let i = 0; i < GALAXY_PARTICLES; i++) {
+    const arm = Math.floor(Math.random() * ARM_COUNT);
+    const t = Math.random();
+    const armAngle = (arm / ARM_COUNT) * Math.PI * 2;
+    const spread = (Math.random() - 0.5) * 0.55;
+    const angle = armAngle + t * Math.PI * 2.8 + spread;
+    const dist = t * 0.42 + 0.04 + Math.random() * 0.04;
+    const jitter = (Math.random() - 0.5) * 0.018;
+    const alpha = (1 - t) * 0.55 + 0.08;
+    const hue = arm === 0 ? [167,139,250] : arm === 1 ? [200,245,66] : [255,107,53];
+    const mix = Math.random();
+    const r2 = Math.round(hue[0] * mix + 255 * (1 - mix));
+    const g2 = Math.round(hue[1] * mix + 255 * (1 - mix));
+    const b2 = Math.round(hue[2] * mix + 255 * (1 - mix));
+    galaxy.push({ angle, dist, jitter, alpha, r: r2, g: g2, b: b2, size: Math.random() * 1.5 + 0.3 });
+  }
+}
+ 
+// Nebula clouds
+const nebulas = [];
+function initNebula() {
+  nebulas.length = 0;
+  const configs = [
+    { dx: -0.18, dy: -0.12, rx: 0.28, ry: 0.18, color: [167,139,250], alpha: 0.07 },
+    { dx:  0.20, dy:  0.15, rx: 0.22, ry: 0.16, color: [200,245,66],  alpha: 0.05 },
+    { dx: -0.05, dy:  0.20, rx: 0.18, ry: 0.14, color: [255,107,53],  alpha: 0.055 },
+  ];
+  configs.forEach(c => nebulas.push(c));
+}
+ 
+initGalaxy();
+ 
+let t = 0;
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+ 
+  // Deep space gradient
+  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) * 0.75);
+  bg.addColorStop(0, 'rgba(14,10,40,1)');
+  bg.addColorStop(0.5, 'rgba(6,4,20,1)');
+  bg.addColorStop(1, 'rgba(3,2,13,1)');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+ 
+  // Nebula
+  nebulas.forEach(n => {
+    const nx = cx + n.dx * W;
+    const ny = cy + n.dy * H;
+    const grad = ctx.createRadialGradient(nx, ny, 0, nx, ny, n.rx * W);
+    grad.addColorStop(0, `rgba(${n.color[0]},${n.color[1]},${n.color[2]},${n.alpha})`);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.save();
+    ctx.scale(1, n.ry / n.rx);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H * (n.rx / n.ry));
+    ctx.restore();
+  });
+ 
+  // Stars twinkle
+  t += 0.016;
+  stars.forEach(s => {
+    const a = s.alpha * (0.7 + 0.3 * Math.sin(t * s.twinkleSpeed * 60 + s.twinkleOffset));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.globalAlpha = a;
+    ctx.fillStyle = s.color;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+ 
+  // Galaxy center glow
+  const gGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.12);
+  gGlow.addColorStop(0, 'rgba(220,200,255,0.18)');
+  gGlow.addColorStop(0.4, 'rgba(180,150,255,0.06)');
+  gGlow.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = gGlow;
+  ctx.fillRect(0, 0, W, H);
+ 
+  // Galaxy particles
+  const galR = Math.min(W, H) * 0.46;
+  galaxyAngle += rotationSpeed + BASE_DRIFT;
+  rotationSpeed += (targetSpeed - rotationSpeed) * 0.06;
+ 
+  galaxy.forEach(p => {
+    const a = p.angle + galaxyAngle;
+    const px = cx + Math.cos(a) * p.dist * galR + p.jitter * galR;
+    const py = cy + Math.sin(a) * p.dist * galR * 0.38 + p.jitter * galR;
+    ctx.beginPath();
+    ctx.arc(px, py, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${p.r},${p.g},${p.b},${p.alpha})`;
+    ctx.fill();
+  });
+ 
+  requestAnimationFrame(draw);
+}
+ 
+window.addEventListener('resize', resize);
+resize();
+draw();
+ 
+// Controls
+const btnLeft = document.getElementById('btn-left');
+const btnRight = document.getElementById('btn-right');
+let holdLeft = false, holdRight = false;
+ 
+function startLeft()  { holdLeft = true; targetSpeed = -0.012; }
+function startRight() { holdRight = true; targetSpeed = 0.012; }
+function stopLeft()   { holdLeft = false; if (!holdRight) targetSpeed = 0; }
+function stopRight()  { holdRight = false; if (!holdLeft) targetSpeed = 0; }
+ 
+btnLeft.addEventListener('mousedown', startLeft);
+btnLeft.addEventListener('touchstart', e => { e.preventDefault(); startLeft(); });
+btnRight.addEventListener('mousedown', startRight);
+btnRight.addEventListener('touchstart', e => { e.preventDefault(); startRight(); });
+ 
+document.addEventListener('mouseup', () => { stopLeft(); stopRight(); });
+document.addEventListener('touchend', () => { stopLeft(); stopRight(); });
+</script>
+</body>
+</html>
+ 
