@@ -1,30 +1,77 @@
-/* reset browser styles */
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-body {
-  line-height: 1.2;
-}
-ol { 
-  padding-left: 1.4em;
-  list-style: decimal;
-}
-ul {
-  padding-left: 1.4em;
-  list-style: square;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-} 
 /* end reset browser styles */
+
+/* ==========================================================================
+   TUTORIAL: MARGINS, BACKGROUNDS, AND BORDERS
+   ========================================================================== */
+
+/* Bước 2: Thiết lập màu nền vàng chanh nhạt cho toàn bộ trang web */
+html {
+  background-color: rgb(253, 248, 171);
+}
+
+/* Bước 3, 4, 5: Định dạng khối thân trang (Body) nằm đè lên lớp html */
+body {
+  background-color: rgb(255, 255, 255);       /* Nền trắng che phủ nền vàng */
+  border: 3px solid rgb(75, 75, 75);          /* Viền ngoài màu xám đậm 3px */
+  box-shadow: 0 0 15px 5px rgba(44, 82, 100, .75); /* Đổ bóng hào quang xanh trong suốt */
+  max-width: 760px;                           /* Giới hạn chiều rộng tối đa 760px */
+  margin-top: 20px;                           /* Đẩy lề trên cách mép trình duyệt 20px */
+  margin-left: auto;                          /* Tự động căn giữa trang bên trái */
+  margin-right: auto;                         /* Tự động căn giữa trang bên phải */
+  padding: 15px;                              /* Tạo khoảng đệm an toàn bên trong 15px */
+}
+
+/* ==========================================================================
+   ADJUSTING THE SPACE AROUND TAGS
+   ========================================================================== */
+
+/* Bước 1, 2, 3, 4: Chỉnh sửa tiêu đề chính H1 và xử lý lề âm (Negative Margins) */
+h1 {
+  font-size: 2.75em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 1px;
+  color: rgb(133, 161, 16);                 /* Chữ màu xanh lá cây */
+  text-transform: uppercase;
+  background-color: rgb(226, 235, 180);      /* Nền xanh lá nhạt phủ hết chiều ngang */
+  padding: 5px 15px 2px 15px;                /* Đệm trên - phải - dưới - trái */
+  margin: 0 -15px 20px -15px;                /* Sử dụng lề âm -15px để kéo dãn nền chạm viền xám */
+}
+
+/* Bước 5 & Bước 9: Định dạng các tiêu đề phụ H2 và ẩn đường kẻ tràn qua Float */
+h2 {
+  font-size: 1.5em;
+  font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
+  color: rgb(249, 107, 24);                  /* Chữ màu cam */
+  border-top: 2px dotted rgb(141, 165, 22);   /* Đường chấm đứt phía trên */
+  border-bottom: 2px dotted rgb(141, 165, 22);/* Đường chấm đứt phía dưới */
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 15px 0 5px 0;
+  overflow: hidden;                          /* Khắc phục lỗi border chạy xuyên qua thanh bên */
+}
+
+/* ==========================================================================
+   BUILDING A SIDEBAR
+   ========================================================================== */
+
+/* Bước 4, 5, 6, 7: Định dạng khung hộp chứa thanh bên nổi (Sidebar) */
+.sidebar {
+  width: 30%;                                /* Chiếm 30% độ rộng của vùng thân */
+  float: right;                              /* Ép khối trôi dạt về phía bên phải */
+  margin: 10px;                              /* Khoảng cách lề ngoài 10px */
+  background-color: rgb(250, 235, 199);      /* Nền màu cam nhạt */
+  padding: 10px 20px;                        /* Đệm trong giữ chữ không dính viền */
+  border: 1px dotted rgb(252, 101, 18);      /* Viền chấm cam bao quanh mảnh 1px */
+  border-top: 20px solid rgb(252, 101, 18);  /* Ghi đè viền trên dày 20px dạng khối đặc */
+  border-radius: 10px;                       /* Bo tròn góc 10px cực mượt */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);/* Đổ bóng đổ khối tạo hiệu ứng nổi */
+}
+
+/* Bước 8: Selector con cháu - Reset lại định dạng h2 riêng tư bên trong Sidebar */
+.sidebar h2 {
+  border: none;                              /* Xóa bỏ 2 đường chấm đứt của h2 tổng */
+  margin-top: 0;                             /* Triệt tiêu lề trên để không bị đẩy chữ xuống */
+  padding: 0;                                /* Reset padding */
+}
