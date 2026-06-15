@@ -1,0 +1,61 @@
+﻿Making a navigation bar
+
+1. Open jenware.html if it isn’t already.
+
+2. Start by making the ul element as neutral as possible. The bullets have already been turned off, but we should clear out any padding and margin that might be happening in there.
+
+	#nav ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+
+3. Next float the list items to the left, and clear the following products div.
+
+	#nav ul li {
+		…
+		float: left;
+	}
+	#products {
+		…
+		clear: both;
+	}
+
+Save the document and take a look at it in a browser. You should see that the links are now lined up pretty tightly, but also that the purple navigation bar has shrunk to nothing — float containment fail! Let’s fix it with the overflow technique. And while we’re at it, let’s do the same for the #products div so it is sure to contain the floated images.
+
+	#nav {
+		…
+		overflow: hidden;
+		width: 100%;
+	}
+	#products {
+		…
+		overflow: hidden;
+	}
+
+4. Now we can work on the appearance of the links. Start by making the a elements display as block elements instead of inline. Instead of setting specific dimensions for each link, we’ll use padding (.5em) to give them a little breathing room inside the border and use margins (.25em) to add space between links. I’ve added a lavender border as the default, but I brighten it up to white for the :focus and :hover states.
+
+	#nav ul li a {
+		display: block;
+		padding: .5em;
+		border: 1px solid #ba89a8;
+		border-radius: .5em;
+		margin: .25em;
+	}
+	#nav ul a:focus {
+		color:#fc6
+		border-color: #fff;
+	}
+	#nav ul a:hover {
+		color: #fc6;
+		border-color: #fff;
+	}
+
+5. Finally, let’s center the list in the width of the nav section. We can do this by applying a width to the ul element and setting its side margins to auto. I confess that I had to fiddle around with a few width measurements to arrive at one that fit the entire menu just right (19.5em). If it’s too wide, the menu won’t be truly centered.
+
+	#nav ul {
+		list-style: none;
+		padding: 0;
+		margin: 0 auto;
+		width: 19.5em;
+	}

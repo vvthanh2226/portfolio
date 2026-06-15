@@ -1,0 +1,107 @@
+Framing an Image
+
+1. Launch a web browser and open the file image.html in the 01_image_ex folder.
+
+2. Open the file styles.css in the 01_image_ex folder in your favorite text editor.
+  
+  This file is the external style sheet used by the image.html file. You’ll start by adding a class style to this style sheet, and then applying a class to the <img> tag in the HTML file.
+
+3. Scroll to the bottom of the file, and then type the following:
+
+  img.figure {
+  }
+
+  The selector img.figure targets any <img> tag with the figure class applied to it. You’ll use this to selectively format only the images you want. (You could also just name the style .figure—the only difference is that that style would then apply to any tag with the class figure, not just images.)
+  
+4. Add float and margin properties to the style you just created, like so:
+
+  float: right;
+  margin: 10px;
+
+  The right float moves the image to the right side of the page, letting the text move up and wrap around the photo’s left edge. The margins give the photo a little breathing room and move it away from the text, the side of the page, and the headline above. Next, you’ll add a border, a background color, and some padding to make the image look more like a real snapshot.
+  
+5. Add border, background color, and padding, so that the finished style looks like this:
+
+  img.figure {
+    float: right;
+    margin: 10px;
+    border: 1px solid #666;
+    background-color: #CCC;
+    padding: 10px;
+  }
+  
+  If you save this file and then preview the web page right now, you won’t see a change, since the class style has no effect until you’ve added the class to a tag.
+  
+6. Save and close the styles.css file and open the image.html file. Locate the <img> tag and add class="figure" so the tag looks like this:
+
+  <img src="../images/grass.jpg" alt="Apartment Grass" width="200" height="200" class="figure">
+  
+  Now that image takes on all of the formatting properties you defined for the .figure class style.
+  
+7. Preview the page in a web browser.
+  A picture may be worth a thousand words, but sometimes you still need a few words to explain a picture. So in the next part of this tutorial, you’ll add a caption below the photo.
+
+  You’ll frequently want to add a caption to an image or photo to provide more information about the subject, where the photo was taken, and so on. Instead of just floating the image, as you did in the previous exercise, you want the caption text to float as well. The best way to float both is to wrap the image and the text in a container that’s floated as a single unit. This method keeps the photo and its related text together. If you decide later that you want to change their layout—perhaps float them to the left—no problem: You simply change the formatting for the entire container.
+
+  Fortunately, HTML includes two tags for just such a requirement: The <figure> tag is intended to enclose an image that’s meant to be an illustrative figure. In addition, the <figcaption> tag can be used to enclose—you guessed it—a figure caption. First, you need to adjust some of the HTML.
+  
+8. Return to your text editor and the image.html file. Locate the <img> tag in the code and remove the class="figure" that you added in step 6. Add <figure> before the <img> tag.
+
+  This marks the beginning of the container. Now you’ll add the caption and close the <figure> to indicate the end of the container.
+  
+9. After the <img> tag, add the code in bold below, so the HTML looks like this:
+
+  <figure>
+    <img src="../images/grass.jpg" alt="Creeping Bentgrass" width="200"     height="200">
+    <figcaption>Figure 1: Creeping Bentgrass is best suited for outdoor use andshould be avoided by the indoor farmer.</figcaption>
+  </figure>
+
+10. Return to the styles.css file. Scroll to the bottom of the file and delete the img.figure style you created earlier.
+
+11. Add this style to the styles.css file:
+
+  figure {
+    float: right;
+    width: 222px;
+    margin: 15px 10px 5px 10px;
+  }
+
+  You’ve already used the float: right; property in the previous tutorial, and the margin adds a little white space around all four edges of the <figure> tag. But what’s the width for, you ask. Although the photo has a set width (200 pixels), the caption paragraph doesn’t. When you don’t set a width, the paragraph makes the <figure> expand wider than the photo. In this case, you want the caption to be just as wide as the photo and its frame.
+
+  The 222-pixel value comes from a little math used to calculate the entire area taken up by the photo on the page: The photo is only 200 pixels wide. But in the next step you’ll create a style that adds 10 pixels of left and right padding, as well as a 1-pixel left border and 1-pixel right border, to make the entire width of the photo 222 pixels from border to border.
+  
+12. Add this style to the styles.css file:
+
+  figure img {
+    border: 1px solid #666;
+    background-color: #CCC;
+    padding: 10px;
+  }
+  
+
+  This descendant selector affects any <img> tag inside a <figure> tag. Since you’re using a descendant selector here, you don’t need to add a class to the <img> tag. Next, you’ll style the caption.
+  
+13. Add the following style to the styles.css style sheet:
+
+  figcaption {
+    font: bold 1em/normal Verdana, Arial, Helvetica, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+
+  This style uses some of the properties to create a center-aligned, bold, and gray caption using the Verdana font. Fortunately, the font shorthand property in the first line lets you roll four different properties into a single style declaration.
+
+14. Add three properties to the figcaption style, like so:
+
+  figcaption {
+    font: bold 1em/normal Verdana, Arial, Helvetica, sans-serif;
+    color: #333;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #e6f3ff, white);
+    border: 1px dashed #666;
+    padding: 5px;
+  }
+
+  The purpose of the background-image, border, and padding properties should be clear—to create a colored box around the caption. We’re using the linear gradient feature of the background-image property (page 231) to create a gradient that changes from light blue to white in the background of the caption. 
+
+15. Save both the image.html and styles.css files and preview the image.html file in a web browser.

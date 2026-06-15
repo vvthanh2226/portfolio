@@ -1,0 +1,25 @@
+﻿Floating images
+
+1. Open the Jenware home page document(jenware.html) in a text editor and browser. 
+
+2. We’ll start by removing wasted vertical space next to the product images by floating the images to the left. We’ll use a contextual selector to make sure that we float only those images in the "products" section of the page. While we’re at it, let’s add a little margin on the right and bottom sides using the margin shorthand property.
+
+	#products img {
+		float: left;
+		margin: 0 6px 6px 0;
+	}
+
+Save the document and take a look at it in the browser. You should see the product descriptions wrapping to the right of the images.
+
+3. Next, I’d like the “More about…” links to always appear below the images so they are clearly visible and consistently on the left side of the products section. This change is going to require a little extra markup because we need a way to target just the paragraphs that contain "more about" links. Add the class name "more" to each of the paragraphs that contain links. Here is the
+first one:
+
+	<p class="more">
+		<a href="#">More about custom barware...</a>
+	</p>
+
+Now we can use a class selector to make those paragraphs clear the floated images.
+
+	#products .more {
+		clear: left;
+	}

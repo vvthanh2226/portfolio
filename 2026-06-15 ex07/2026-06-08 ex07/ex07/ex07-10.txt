@@ -1,0 +1,246 @@
+Multiple-Column Layouts
+
+Structuring the HTML
+
+1. Open the index.html file in a text editor and click in the empty line following the HTML comment: <!–first sidebar goes here-->.
+
+  As you can see, some of the HTML work is already done: Currently, there’s a banner and footer. Before you create any styles, you need to add the structure and content for the page. You’ll next add an <aside> tag to create the left sidebar.
+
+2. Add an opening <aside> for the sidebar: <aside class="sidebar1">. Then press Enter (Return) to create a new, empty line.
+
+  You’re using the HTML5 <aside> tag, but you could just as easily use a <div> tag to create this column. If you were creating a web page from scratch, at this point you’d add the HTML for the page’s sidebar, perhaps a list of articles on the site, links to related websites, and so on. In this case, the HTML is already taken care of. The code for an unordered list of links is waiting for you in another file. You just need to copy and paste it into this page.
+  
+3. Open the file sidebar1.txt, copy all of the contents, and then return to the index.html file. Paste the HTML after the <aside> tag you created in step 2 (or your <div> tag, if you went that route).
+
+  The HTML for the sidebar is nearly complete. You just need to close the <aside> tag.
+  
+4. Immediately after the code you just pasted, type </aside>.
+
+  You’ve just added the first layout element on the page. In a little bit, you’ll style this HTML so that it looks like a column. But first, you need to add some more content.
+  
+5. Place your cursor in the empty line after this HTML comment: <!--main content goes here-->, and then type <article class="main">.
+
+  This div holds the page’s main content. You’ll get that HTML from another file, too.
+  
+6. Open the file main.txt, copy all of the contents, return to the index.html file, and then paste the code after the <article> tag you just created. Add the closing </article> tag exactly as in step 4. Save the HTML file.
+
+  That’s all the HTML you need to create your design for now. Next, it’s time to turn your attention to building the CSS.
+
+Creating the Layout Styles
+
+1. In a text editor, open the styles.css file.
+
+  Since the web page uses an external style sheet, you’ll add all the new styles to it. You’re now managing two files, the HTML file and the CSS file, so make sure you save both before previewing your work in a web browser.
+  
+2. Scroll to the bottom the CSS file. You’ll see a CSS comment that reads /* add tutorial styles below here */. Below that, add this style:
+
+  .sidebar1 {
+    float: left;
+    width: 20%;
+  }
+  
+  This class style floats the sidebar div to the left of the page, and gives it a width of 20%. The width property is important in this style: Unless you’re floating an image that has a set width, you should always set a width for a floated element. Otherwise, the browser sets the width based on the content inside the float, leading to inconsistent results. Here, the width is percentage-based, meaning it’s determined by the width of its container. In this case, the container is the <body> tag, and it fills the entire browser window width. So the sidebar’s onscreen width will depend on the width of the visitor’s browser window.
+  
+3. Save the HTML and CSS files and preview the index.html file in a web browser.
+
+  The sidebar now forms a left-hand column…sort of. When the text in the main column reaches the bottom of the sidebar, it wraps around the bottom of the sidebar, as shown in Figure 13-12. While that’s normally how floats work, it’s not what you want in this case. To make the main body text appear like a column of its own, you have to add enough left margin to indent the main text beyond the right edge of the sidebar.
+  
+4. Create a style for the second column:
+
+  .main {
+    margin-left: 22%;
+  }
+  
+  Since the sidebar is 20 percent wide, a margin of 22 percent indents the main content an additional 2 percent, creating a gutter between the two columns. This additional white space not only makes the text easier to read, but also makes the page look better.
+
+  Preview the page now, and you’ll see you’ve got yourself a two-column layout.
+
+Adding Another Column
+
+1. Open the file sidebar2.txt. Copy all the HTML from that file, and then return to the index.html file.
+
+  The HTML for this column goes after the <article> tag containing the page’s main text.
+  
+2. Locate the HTML comment <!-- second sidebar goes here --> near the bottom of the file. Click in the empty line below it.
+
+  It’s often hard to find the right closing </div> when you use a lot of divs to structure a page. That’s why HTML comments—like this one—can really help you identify and keep track of the HTML in your page.
+  
+3. Type <aside class="sidebar2">, press Enter, and then paste the HTML you copied in Step 1. Hit Enter again, and then type </aside>. Save the HTML file.
+
+  When you close the <aside> tag, you’ve completed the HTML for the page’s third column. Start styling it next.
+  
+4. In your text editor, return to the styles.css file. Below the .main style you created in Step 4 on the previous page, add a new style:
+
+  .sidebar2 {
+    float: right;
+    width: 20%;
+  }
+
+  You’re floating this column to the right side of the page to flank the main content with sidebars on either side.
+  
+5. Save all the files and preview the index.html file in a web browser.
+
+  Right away, you’ll notice something strange. The second sidebar appears below the main content and even runs over the footer. The problem has to do with the HTML’s source order. When you float an element, only HTML that comes after that element wraps around and appears next to the floated element. In other words, since the second sidebar’s HTML is after the main content, it doesn’t appear next to the main content, only after it.
+
+  There are a couple of ways to get around this situation. You could move the second sidebar’s HTML (the second <aside> element) before the main content’s HTML (the <article> element). Then the first sidebar would float to the left and the second to the right; the main content would just scoot up in between them.
+
+  Alternatively, you could simply float the main column as well. If you set its width so all three columns add up to no more than 100 percent, then the three columns will sit side by side. For this example, you’ll try that approach.
+  
+6. Edit the .main style so that it looks like this:
+
+  .main {
+  float: left;
+  width: 60%;
+  }
+
+  If you save the CSS file and preview the index.html file in a browser, you’ll notice another problem—suddenly, everything’s turned black! Remain calm: That’s the footer trying to wrap around all the floats and causing a mess. As you read above, when you float an element and another element wraps around it, the background color and borders for that element actually extend underneath the floated element. Strange, true…and frustrating. To fix it, you simply need to make the footer drop below—that is, clear—the floats.
+  
+7. Add one more style after the .sidebar2 style:
+
+  footer {
+    clear: both;
+  }
+  
+  The clear property forces an element to drop below floated elements. In this case, it pushes the footer down below the columns.
+  
+Adding Some Breathing Room
+
+1. Add padding to the .sidebar1, .main, and .sidebar2 styles, so the styles look like this:
+
+  .sidebar1 {
+    float: left;
+    width: 20%;
+    padding: 0 20px 0 10px;
+  }
+  .main {
+    float: left;
+    width: 60%;
+    padding: 0 20px 0 20px;
+  }
+  .sidebar2 {
+    float: right;
+    width: 20%;
+    padding: 0 10px 0 20px;
+  }
+
+  Here, you’re using the padding shorthand property. The numbers represent the top, right, bottom, and left padding. So in the .sidebar1 style, you’re adding 0 top padding, 20 pixels of right padding, 0 bottom padding, and 10 pixels of left padding.
+
+  If you save the styles.css file and preview the index.html file in a browser, you’ll notice a problem—the dreaded float drop. By adding padding, you’ve essentially increased the width of each column, and since the total widths of the columns (20% + 60% + 20%) already totaled 100%, that extra padding forces the third column down below the other two. It just can’t fit!
+
+  There are a couple of ways to handle this problem. First, you can remove the padding from these styles, and add it to all the elements inside. In other words, add 10 pixels of left and right padding to the <h2>, <h3>, <p>, and <ul> tags. That’s a lot of work.
+
+  Second, you could remove the padding from the styles in the CSS file and then, in the index.html file, add a <div> inside each of the columns, something like this:
+
+  <aside class="sidebar1">
+    <div class="innerColumn">
+      ... content goes here ...
+    </div>
+  </aside>
+
+  Then, in the styles.css file, simply create a style to add the padding:
+
+  .innerColumn {
+    padding: 0 20px 0 10px;
+  }
+  
+  Because there’s no width set on the .innerColumn style, it simply grows to fill the column, while the padding scoots everything inside of it (the headings, paragraphs, and so on) in by 10 pixels. The downside of this approach is you need to add additional HTML.
+
+  There’s another way, that’s a lot easier, more flexible, and widely supported by web browsers.
+  
+2. Add the following style to the top of the style sheet (just below the /* reset browser styles */ comment):
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  This style takes advantage of the universal selector. It applies the box-sizing property to every element on the page. By setting this property to border-box, you’re instructing web browsers to use the size of the padding and border properties as part of the CSS width value. In other words, the padding doesn’t add to the CSS widths you set earlier. This prevents any float drop, since the columns now only add up to 100 percent of the browser window width.
+
+  Finally, you’ll add a border line to separate the columns.
+  
+3. Edit the .main style by adding a left and right border so that it looks like this:
+
+  .main {
+    float: left;
+    width: 60%;
+    padding: 0 20px;
+    border-left: dashed 1px rgb(153,153,153);
+    border-right: dashed 1px rgb(153,153,153);
+  }
+  
+  These properties add two lines, one on either side of the main content section.
+
+Fixing the Width
+
+1. Return to your text editor and the index.html file. Directly after the opening <body> tag, add a new <div> tag:
+
+  <body>
+    <div class="pageWrapper">
+    
+  You’re wrapping the entire page inside a div, which you’ll use to control the page’s width. You need to make sure that tag is closed.
+  
+2. Add the closing </div> just before the closing </body> tag:
+
+    </div>
+  </body>
+
+  Now that there’s a div surrounding all of the content on this page, you can control the page’s width by setting a width for this tag.
+  
+3. Save the HTML file, and switch to the styles.css file. Add another style:
+  
+  .pageWrapper {
+    width: 960px;
+  }
+  
+  If you save the CSS and HTML files and preview the index.html file in a browser, you’ll see that the page is indeed locked in at 960 pixels. If you make the browser window thinner than 960 pixels, you’ll get scroll bars.
+
+  You don’t have to set an exact width, however. If, you want the page to fit into a browser window that’s thinner—say 760 pixels—you’re better off avoiding an exact width. The real problem is that the page becomes hard to read when the browser is really wide. Another approach is to use the max-width property, which prevents the div from getting larger than a particular value, but doesn’t prevent it from getting thinner to fit smaller screens. While you’re at it, you’ll also center the div within the browser window.
+  
+4. In the styles.css file, change the .pageWrapper style you just created so it looks like this:
+
+  .pageWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  The max-width property provides a liquid layout, but only up to a point. In this case, when the browser window is wider than 1200 pixels, the div won’t get any wider. The margin setting here—0 auto—provides 0 margin for the top and bottom, and auto margins for left and right. That auto setting tells the browser to automatically figure out the margin, splitting the space evenly between left and right and centering the div in the browser window.
+  
+Mixing Liquid and Fixed Design
+
+1. In the styles.css file, delete the .pageWrapper style you just created.
+
+  You can leave the pageWrapper div in the HTML. It won’t hurt to have that little bit of extra HTML, and you may want to use it later to hang styles on.
+
+  The page is back to its fully liquid form. Now you want to constrain just the nav, banner text, footer text, and main content so they don’t get any wider than 1200 pixels. To do so, you need to dig into the HTML a bit and see what elements you have to play with.
+
+  Look in the HTML for the index.html file and find the <nav> tag. Inside it, you’ll see that the navigation buttons are created with a simple unordered list. Bingo. You can set the maximum width of that list to 1200 pixels and center it on the page, while leaving the <nav> tag (and its black background) to extend the entire browser window width. Likewise, the text inside the banner—CSS: The Missing Manual—is inside an <h1> tag. You can set its maximum width and margin as well. In the footer, you’ve got a <p> tag you can control.
+  
+2. In the styles.css file, add one more style:
+
+  nav ul, header h1, footer p {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  This group selector targets the navigation bar, banner, and footer text, but not their containing elements. If you save the CSS file and preview index.html now, you’ll see that the navigation, title, and footer text don’t get wider than 1200 pixels. However, the main content region still fills the entire browser window. To fix that, you need to wrap the three columns in another div to create a group that you can size and center.
+  
+3. Open the index.html file in your text editor. Just before the comment that introduces the first sidebar—<!-- first sidebar goes here -->—add <div class="contentWrapper">:
+
+  <div class="contentWrapper">
+  <!-- first sidebar goes here -->
+
+  Now, you need to close that div.
+  
+4. Scroll down near the bottom of the HTML file. Between the closing </aside> tag and opening <footer> tag, add a closing </div> so the HTML looks like this:
+
+  </aside>
+  </div>
+  <footer>
+
+  Finally, you can add this new class name to the style you created in step 2.
+  
+5. In the styles.css file, add the new class to the group selector, like this:
+
+  nav ul, header h1, footer p, .contentWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }

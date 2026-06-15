@@ -1,0 +1,86 @@
+Creating a Photo Gallery
+
+  Folks used to rely on the HTML <table> tag to create rows and columns for holding the pictures in a photo gallery. But you can achieve the same effect with a little CSS and far less HTML.
+
+1. Open the file 02_gallery_ex/gallery.html.
+
+  First, a quick review of the HTML used to construct the photo gallery. The page contains six photos and photo captions. Each photo and caption is contained in a <figure>. The photo itself is an <img> tag and the caption is inside a <figcaption> tag.
+
+  <figure>
+    <img src="../images/dandelion.jpg" alt="Dandelion" height="200"     width="200"/>
+    <figcaption>Figure 6: The dandelion: scourge of the apartment farmer.     </figcaption>
+  </figure>
+
+  If you preview the page now, you’ll see a series of photos stacked one on top of the next—not very attractive. The gallery would look nicer if the photos sat next to each other in rows upon rows. You can accomplish that with just a few styles.
+  
+2. Open the styles.css file.
+
+  This style sheet already contains a basic CSS reset and a few styles for the headline and other text. First you’ll add a couple of styles for the photos and their captions.
+  
+3. At the bottom of the styles.css file, add two new styles, as follows:
+  figure img {
+    border: 1px solid #666;
+    background-color: #FFF;
+    padding: 4px;
+  }
+  figcaption {
+    font: 1.1em Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 10px 0 0 0;
+  }
+
+  These two styles add a border to each image in the gallery, and set the font, alignment, and margins of the captions. The first is a descendant selector to target just the images inside the figures.
+  
+
+  Next, place the photos side by side.
+  
+4. Add the following style to the style sheet:
+
+  figure {
+    float: left;
+    width: 210px;
+    margin: 0 10px 10px 10px;
+  }
+
+  This style floats each photo/caption pair to the left. In effect, it places the photos side by side until there’s no more room in the row. The browser then drops the next photos down a row, until all of the photos are displayed one row on top of the next. The width is the total width of the photo plus padding and borders.
+
+  In this example, it’s 200 pixels for the photo, 8 pixels for left and right padding, and 2 pixels for left and right borders.
+  
+5. Save the styles.css file and preview the gallery.html page in a web browser.
+
+  Adjust the width of your browser window to make it thinner and wider and watch how the images reflow into the space. Aha—something’s not quite right. The second row of images has two empty spaces where photos should be. This problem occurs because the caption for the second image on the first line is taller than the other captions on the line. Images that jump down to another row bump into that caption and can’t get by it. (You can read more about this float property snafu on page 414.) Fortunately, there’s a simple fix to this dilemma.
+  
+6. Return to your text editor and the styles.css file. Locate the figure style. Remove the float:left and add display: inline-block; vertical-align: top. The finished style should look like this:
+
+  figure {
+    display: inline-block;
+    vertical-align: top;
+    width: 210px;
+    margin: 0 10px 10px 10px;
+  }
+
+  The display: inline-block property treats each image/caption pair as a block (a box with height and width) but also as an inline element (so the blocks can sit side by side). In addition, the vertical-align property set to top makes sure that each <figure> tag aligns to the top of all the other <figure> tags in a row.
+
+7. Save the file and preview the page in a web browser. 
+
+  If you resize the browser window, the gallery reformats itself. With a wider window you can fit four or even five images on a row, but if you make it smaller you’ll see only one or two images per row.
+
+
+Adding Drop Shadows
+
+  Your gallery looks good, but you can make it even more impressive. Adding drop shadows under each photo lends the page an illusion of depth and a realistic 3-D quality. But before you fire up Photoshop, you’ll be glad to know there’s no need to add individual drop shadows. Instead, you can make CSS automatically add a shadow to any image you want.
+
+1. In a text editor, return to the styles.css file you’ve been working on.
+
+2. Add box-shadow: 2px 2px 4px rgba(0,0,0,.5); at the end of the figure img style so it looks like this:
+
+  figure img {
+    border: 1px solid #666;
+    background-color: #FFF;
+    padding: 4px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.5);
+  }
+
+  Here you’ve added a shadow that extends 2 pixels to the right of the image, 2 pixels below the image, and which spreads out 4 pixels. Using an RGBA color, you can set the shadow to 50 percent transparent black color.
+  
+3. Save the file and preview the page.

@@ -1,0 +1,193 @@
+Positioning Page Elements
+
+Enhancing a Page Banner
+
+1. Launch a web browser and open the file index.html.
+
+2. Open the styles.css file in a text editor.
+
+  This file already includes some basic formatting. You’ll add the styles for this tutorial to the bottom. You’ll start by moving the small hat image to the left side of the banner. To help break up the boxy look that’s typical of CSS designs, break this graphic out of the banner’s borders, so it looks like a slapped-on sticker.
+
+3. At the bottom of styles.css, add this new style:
+
+  header .badge {
+    position: absolute;
+    top: -20px;
+    left: -90px;
+  }
+  
+  The graphic is inside of an HTML <header> tag, and the graphic itself has a class of badge. This style positions the top-left corner of the graphic 90 pixels to the left and 20 pixels above the top of the page.
+
+  Preview the page now, and you’ll see a couple of problems. First, the graphic hangs off the edge of the page, but you really want it to hang off the edge of the banner area. You’ll tackle that problem now.
+  
+4. Add this style above the one you just created:
+
+  header {
+    position: relative;
+  }  
+
+  It’s good practice to place the CSS code for styles that control a general section of a page (like this header style) above the code for styles that format just parts of that section (like the style you created in step 3). Also, grouping styles for related sections makes it easier to find styles when you need to analyze or edit a page’s CSS. In this case, the header style goes first because it applies to a large chunk of HTML. But you should keep the header .badge style near it as you add more styles to the page.
+
+  The header style creates a new positioning context for any nested tags. In other words, the relative setting makes any other positioned elements inside this tag place themselves relative to the edges of the banner. This change in positioning shifts the placement of the style you created in step 3. Now it’s 20 pixels above and 90 pixels to the left of the banner box. The badge still hangs off the page just a little bit, so you’ll add some margin to the header to move it down a bit.
+  
+5. Edit the header style by adding the two bolded lines below:
+
+  header {
+    position: relative;
+    margin-top: 20px;
+    padding: 20px 0 0 10px;
+  }  
+
+  This margin adds enough space above the header to move it and the graphic down. In addition, the padding adds space inside the header so the headline (and the soon to be repositioned nav bar) don’t feel so cramped. But now you have another problem—“The Hat Gallery” headline is partially hidden underneath the badge. Overlapping elements is one of the hazards of absolute positioning. In this case, you can fix the problem by changing the badge’s z-index and moving it behind the text.
+  
+6. Add z-index: -1 to the header .badge style:
+
+  header .badge {
+    position: absolute;
+    top: -20px;
+    left: -90px;
+    z-index: -1;
+  }
+
+  The -1 value places the absolutely positioned element behind its parent—in this case, behind the text. Next, you’ll use absolute positioning to move the navigation bar to the right side of the header.
+  
+7. Add another style after the header .badge style.
+
+  header nav {
+    position: absolute;
+    right: 0;
+    top: 45px;
+  }
+  
+
+  Although you could position the navigation bar by floating the <h1> tag, in this case, it’s a lot easier to use absolute positioning. Here, you’ve created a tag style for the HTML <nav> tag, when it’s also inside a <header> tag. Remember, in step 4, you gave the header a relative position, which means any tags inside it—like the <nav> tag—are positioned in relation to it, so the right value of 0 in this style places the right edge of the navigation bar on the right edge of the banner.
+
+
+Placing Captions on the Photos
+
+1. Open index.html in your text editor.
+
+  There is a gallery of photos on this page. The HTML for one image looks like this:
+
+  <figure>
+    <img src="images/file00079963469.jpg" width="300" height="210" alt="Panama">
+    <figcaption><strong>Nam libero tempore.</strong> Soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus</figcaption>
+  </figure>
+
+  This example uses the HTML <figure> and <figcaption> tags. The <figure> tag is normally a block-level tag, but since you want the images to sit side by side, start by changing them to inline elements.
+  
+2. Add another style below the header nav style you added earlier.
+
+  .gallery figure {
+    display: inline-block;
+    width: 300px;
+    height: 210px;
+    margin: 15px;
+    position: relative;
+  }
+  
+
+  This HTML creates a descendant selector. The <figure> tags are all grouped inside a <div> tag with the class of gallery applied to it. You’re using a descendant selector since you may add other figures to this page that aren’t part of the gallery and should be formatted differently. This descendant selector targets just the <figure> tags you’re after at the moment.
+
+  By making the figure tag an inline-block element, the figures can all sit side by side. The width and height values match the width and height of the images. In other words, you want the <figure> tag to only be large enough to hold the images. The margin value adds a little space around the figures so they don’t bump into each. Finally, the position: relative declaration sets a new positioning context, so you can position each caption in relation to its figure. Now it’s time to position the captions.
+  
+3. Add one more style below the one you just added:
+  
+  .gallery figcaption {
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    background-color: rgba(153,153,153,.9);
+  }
+  
+  The <figcaption> tags are absolutely positioned using all four positioning quadrants: top, bottom, left, and right. Basically, the captions will span the entire figure, but be placed a bit below the top and above the bottom (in fact, 15 percent below and above). Using all four settings means that you don’t need to worry about setting a width or a height for the captions; instead, you leave it up to the browser.
+
+  Finally, the background-color declaration places a semi-transparent background atop each figure, which means you can see the image through the caption’s background. Now for some simple text enhancements.
+  
+4. Edit the style you just created by adding the bolded code below:
+
+  .gallery figcaption {
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    background-color: rgba(153,153,153,.9);
+    padding: 20px;
+    font-family: Titillium, Arial, sans-serif;
+    font-weight: 400;
+    font-size: .9em;
+    color: white;
+  }
+
+  The padding just provides a little breathing room for the text, while the other properties set a font, size, and color.
+
+  If you preview the page now, you’ll see that the captions appear on top of all of the images. Next, you’ll change the style so the captions appear only when a visitor mouses over an image. Start by hiding the captions.
+  
+5. Add opacity: 0; to the style:
+
+  .gallery figcaption {
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    background-color: rgb(153,153,153);
+    background-color: rgba(153,153,153,.9);
+    padding: 20px;
+    font-family: Titillium, Arial, sans-serif;
+    font-size: .9em;
+    font-weight: 400;
+    color: white;
+    opacity: 0;
+  }
+
+  Setting the opacity to 0 makes the caption invisible. You may also use display:none; or visibility: hidden; to hide the captions, but this way you can animate the opacity value by using a CSS transition—in fact, you’ll add that effect in a moment. But first, you need to add a :hover state so when a visitor hovers over the image, its caption appears.
+  
+6. Add the following to the style sheet:
+
+  .gallery figure:hover figcaption {
+    opacity: 1;
+  }
+ 
+  This tricky bit of CSS can be translated to “when the mouse moves over the figure element (figure:hover) inside an element with the class gallery (.gallery), set the opacity of the caption to 1.” In other words, moving the mouse over the <figure> tag makes the descendant <figcaption> tag visible. Save the page and try it out. When you mouse over the figure, the caption should appear. We can animate this effect by adding a transition to the .gallery figcaption style. 
+
+7. Edit the .gallery figcaption style so that it looks like this:
+
+  figcaption {
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    background-color: rgb(153,153,153);
+    background-color: rgba(153,153,153,.9);
+    padding: 20px;
+    font-family: Titillium, Arial, sans-serif;
+    font-size: .9em;
+    font-weight: 400;
+    color: white;
+    opacity: 0;
+    transition: opacity .75s ease-out;
+  }
+
+  You’ve added the transition property. While Internet Explorer 9 and earlier don’t understand transitions, that’s OK; the captions will still appear in those browsers. They’ll just appear and disappear instantly instead of fading in and out smoothly.
+
+  Finally, you’ll make the copyright notice stick to the bottom of the browser window, using fixed positioning.
+  
+8. Add one last style to the style sheet:
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: black;
+    color: white;
+  }
+  
+  Fixed positioning lets you “stick” an element to a specific spot in the browser window. In this case, it’s fixed to the bottom of the page (bottom: 0) and extends the entire width of the page (thanks to the left: 0 and right: 0 declarations). The last three declarations simply add a bit of space around the footer, giving it a black background and white text. 
+  
+9. Save the styles.css file, and preview the index.html file.

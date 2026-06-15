@@ -1,0 +1,35 @@
+Creating columns with floats
+
+1. Start by setting the width of the #products div to 55% and floating it to the left. Currently the padding and margins are set at 1em all around, but change the left and right padding and margins to 2% for this fluid layout. That means the Products box is now taking up roughly 63% of the width of the screen (2% + 2% + 55% + 2% + 2%), plus a few pixels more for the borders. In addition, set the top margin of #products to zero.
+
+  #products {
+    background-color: #FFF;
+    line-height: 1.5em;
+    padding: 1em 2%;
+    border: double #FFBC53;
+    margin: 0 2% 1em;
+    clear: both;
+    float: left;
+    width: 55%;
+  }
+
+There are some interesting behaviors to observe here. The Testimonials text has moved up to the right of the Products box, which is expected, but the Testimonials box (with the exclamation point graphic) is hidden behind the Products box. Only the content wraps; the element box just moves up and does not resize.
+
+2. Time to get that Testimonials box into shape. What we need to do is adjust the margins, specifically to make the left margin on the Testimonials box wide enough that it clears the Products box. The Products box is taking up a hair more than 63% of the width of the page, so let’s give the Testimonials box a left margin of 64% to accommodate it and add a little space between. I’ve also set a narrow right margin of 2% (remember the order of the declaration values is Top, Right, Bottom, Left). Reload the page, and the Testimonials box should be centered in the right column.
+
+  #testimonials {
+    …
+    margin: 1em 10%;/* delete */
+    margin: 1em 2% 1em 64%;
+  }
+
+3. Just a few more tweaks here. Clear the copyright paragraph so it appears at the bottom of the page. Finally, I think the "New Products" h2 would look better left-aligned in this layout, so let’s adjust that too.
+
+  p#copyright {
+    …
+    clear: left;
+  }
+  #products h2 {
+    …
+    text-align: center left;
+  }

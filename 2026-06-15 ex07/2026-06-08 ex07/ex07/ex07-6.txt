@@ -1,0 +1,23 @@
+Using negative margins
+
+0. Now that you know the strategy, you should be able to write the styles that position the #news content in the left column and the #links on the right. This exercise is based on the same HTML source order as the previous example. Note, however, that the column width values have changed (to make things interesting). As before, put 20 pixels of space between columns. 
+
+1. Open the mountolympus-ex2.html document in the materials folder. Otherwise. Remember, the key is to move #news to the left, using a negative margin, by the total width of the elements that precede it in the source.
+
+  #main {
+    float: left;
+    width: 400px;
+    /* write your margin declarations below */
+  }
+
+  #news {
+    float: left;
+    width: 300px;
+    /* write your margin declarations below */
+  }
+
+  #links {
+    float: left;
+    width: 220px;
+    /* write your margin declarations below */
+  }

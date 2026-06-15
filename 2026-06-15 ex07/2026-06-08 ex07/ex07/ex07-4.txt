@@ -1,0 +1,54 @@
+Absolute positioning
+
+1. Let’s pretend that Jenware.com won the "Awesome Site of the Week" award, and now we have the privilege of displaying a little award banner on the home page. Because it is new content, we’ll need to add it to the markup. Because it is non-essential information, we’ll add the image in a new div at the very end of the document, after the copyright paragraph.
+
+  <div id="award">
+    <img src="images/awesomesite.gif" alt="awesome site of the week">
+  </div>
+
+Just because it is at the end of the document source doesn’t mean it needs to display at the bottom of the page. We can use absolute positioning to place the #award div in the topleft corner of the browser window for all to see by adding a new rule to the style sheet that positions the div, like so:
+
+  #award {
+    position: absolute;
+    top: 35px;
+    left: 25px;
+  }
+
+Save the document and take a look. Resize the browser window very narrow, and you will see that the positioned award image overlaps the header content. Notice also that when you scroll the document, the image scrolls with the rest of the page. Try playing around with other offset properties and values to get a feel for positioning in the browser window (or the "initial containing block" to use the correct term). An absolutely positioned award graphic.
+
+2. In previous exercise we created two columns with a float. Now let’s do the same thing with absolute positioning. This time we’ll make the Testimonials box a fixed width and allow the Products box to flex to fill the remaining space. This is just another common layout approach that I want you to get a feel for. As the document stands now, if we position the Testimonials div, it will be relative to the browser window, which is not what we want. We want it to always appear under the #nav div, so we’ll start by creating a new containing block after #nav that holds the products and testimonial divs and will serve as the new positioning context. This is going to require some changes to the markup. Wrap #products and #testimonials in a new div with an id of "content." The structure of the document should look like this:
+
+  <div id="content">
+    <div id="products"> ... </div>
+    <div id="testimonials">... </div>
+  </div>
+  <p class="copyright">...</p>
+
+3. Now we can turn the "content" div into a containing block simply by positioning it with the "unmoved-relative-position" trick:
+
+  #content {
+    position: relative;
+  }
+
+4. With that in place, we can position the #testimonials box in the top-right corner of the #content div. Add the position as well as top and right properties to the #testimonials rule as shown next. In addition, make the content 14 ems wide. Adjust the top margin to 0, and change the left and right margins from 10% to just 1em.
+
+  #testimonials {
+    …
+    margin: 1em 10%; 0 1em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14em; 
+  }
+
+5. If you save the file and take a look in the browser, you should see the Testimonials box in the right corner, plopped right on top of the Products box. The next step is to put a right margin on the Products box to make a space for the Testimonials. But how much space? Let’s calculate like web geeks do.
+
+6. The Testimonials box has approximately 3.5 ems of left padding (55px), 14-em-wide content, 1 em of right padding, and a 1-em right margin, for a total of 19.5em. If we make the right margin on #products 20.5em, that will make space for the Testimonials box plus a little space in between the columns. We’ll do it using the TRBL shorthand, as shown here. 
+
+  #products {
+    …
+    margin: 1em 20.5em 1em 1em;
+    …
+  }
+
+Save the document and look at it in the browser. Resize the window and compare how the boxes behave compared to the previous floated column example.

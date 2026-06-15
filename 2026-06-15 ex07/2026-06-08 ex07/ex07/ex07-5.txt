@@ -1,0 +1,9 @@
+CSS Layout
+
+0. We’ve seen a lot of examples so far of two- and three- column layouts using floats, in both fluid and fixedwidth layouts. I think it is time you try some of these techniques out using the three-column fluid layout we just looked at as a starting point. 
+
+1. Open the file mountolympus-ex1.html in the materials folder. The outline styles are included, but you can "comment them out" (wrap them in /* and */ to hide them) if you want to turn the outlines off and see the layout without them.
+
+2. Rearrange the side columns so that #links is on the right and #news is on the left. You don’t need to change the markup, only a few style values. (Hint: think float direction.) Be sure to adjust the left and right margins on the side columns and clear the #footer.
+
+3. Convert this fluid design into a centered, fixed-width design. This time you will need to add some markup (see the two-column fixed example if you need help).
